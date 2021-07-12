@@ -7,6 +7,9 @@ import Signup from "./Signup"
 import Logout from "./Logout"
 import unicornPic from "../src/pics/unicorns_inc.jpg"
 import { Link, Route, Switch } from "react-router-dom";
+import { CompanyContextProvider } from "./context/CompanyContext"
+import { AuthContextProvider } from "./context/AuthContext"
+import ProtectedRoute from "./ProtectedRoute"
 
 const App = () => {
 
@@ -30,13 +33,17 @@ const App = () => {
           <Link to="/signup">Signup</Link>
         </li>
       </ul>
-      <Switch>
-            <Route path="/about" component={About} />
-            <Route path="/admin" component={Admin} />
-            <Route path="/signin" component={Signin} />
-            <Route path="/signup" component={Signup} />
-            <Route exact path="/" component={Home} />
-      </Switch>
+      <CompanyContextProvider>
+        <AuthContextProvider>
+          <Switch>
+                <Route path="/about" component={About} />
+                <ProtectedRoute path="/admin" component={Admin} />
+                <Route path="/signin" component={Signin} />
+                <Route path="/signup" component={Signup} />
+                <Route exact path="/" component={Home} />
+          </Switch>
+        </AuthContextProvider>
+      </CompanyContextProvider>
       {true && <Logout />}
     </div>
   );

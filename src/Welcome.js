@@ -1,9 +1,11 @@
 import React from 'react';
+import { useCompanyContext } from "./context/CompanyContext"
 
 const Welcome = () => {
+   const { companyInfo: { customers, name } }  = useCompanyContext()
     return ( 
         <>
-        <p>Welcome to Unicorns Inc! 10000 customers served daily!</p>
+        <p>Welcome to {name}! { customers } customers served daily!</p>
         </>
      );
 }
