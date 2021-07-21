@@ -3,11 +3,14 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import "./index.css"
+import { I18nContextProvider } from "./context/I18nContext";
+import "./index.css";
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <I18nContextProvider>
+      <App />
+    </I18nContextProvider>
   </BrowserRouter>,
   document.getElementById("root")
 );
